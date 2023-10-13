@@ -57,6 +57,7 @@
                 android:onClick="PinClick"
                 />
             <Button
+                android:id="@+id/buttonLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -64,7 +65,7 @@
                 android:backgroundTint="#b03737"
                 android:textColor="#d9d7d7"
                 android:text="Zaloguj"
-
+                android:onClick="buttonLoginClick"
                 />
 
         </LinearLayout>
