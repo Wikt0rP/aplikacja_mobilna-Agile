@@ -7,7 +7,6 @@ captures/
 .cxx/
 local.properties
 *.log
-# Log/OS Files
 deploymentTargetDropDown.xml
 render.experimental.xml
 *.iml
