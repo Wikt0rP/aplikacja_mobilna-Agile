@@ -1,8 +1,12 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -21,25 +25,35 @@ public class AfterLogin extends AppCompatActivity {
 
     public void GeneratePieChart()
     {
-        PieChart pieChart = new PieChart(this);
+        int holeColor = Color.parseColor("#3d3d3d");
+        int chartColor1 = Color.parseColor("#D40D12");
+        int chartColor2 = Color.parseColor("#099490");
+
+        PieChart pieChart = findViewById(R.id.pieChart);
+        Legend legend = pieChart.getLegend();
 
         //Data for chart
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(30f, "Wartość 1"));
         entries.add(new PieEntry(40f, "Wartość 2"));
-        entries.add(new PieEntry(50f, "Wartość 3"));
+
 
         //Adding data
         PieDataSet dataSet = new PieDataSet(entries, "Opis wykresu");
 
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setColors(chartColor1, chartColor2);
 
 
         PieData pieData = new PieData(dataSet);
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
-        pieChart.setHoleRadius(25f);
-        pieChart.setTransparentCircleRadius(30f);
+        pieChart.setHoleRadius(60f);
+        pieChart.setHoleColor(holeColor);
+        pieChart.setTransparentCircleRadius(10f);
+        pieChart.setEntryLabelTextSize(20f);
         pieChart.invalidate();
+        legend.setEnabled(false);
+        pieChart.setUsePercentValues(false);
+
     }
 }

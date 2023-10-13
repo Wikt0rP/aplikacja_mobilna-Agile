@@ -1,3 +1,4 @@
+// colors: https://colordesigner.io/#450003-5C0002-94090D-D40D12-FF1D23
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
