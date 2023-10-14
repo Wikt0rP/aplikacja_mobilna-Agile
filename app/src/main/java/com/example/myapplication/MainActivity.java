@@ -1,6 +1,9 @@
+// colors: https://colordesigner.io/#450003-5C0002-94090D-D40D12-FF1D23
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -23,5 +26,11 @@ public class MainActivity extends AppCompatActivity {
     public void PinClick(View view)
     {
 
+    }
+
+    public void buttonLoginClick(View view)
+    {
+        Intent intent = new Intent (this, AfterLogin.class);
+        startActivity(intent);
     }
 }
