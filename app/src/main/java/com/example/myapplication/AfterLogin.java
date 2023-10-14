@@ -29,6 +29,7 @@ public class AfterLogin extends AppCompatActivity {
     {
         int holeColor = Color.parseColor("#3d3d3d");
         int chartColor1 = Color.parseColor("#099490");
+
         int chartColor2 = Color.parseColor("#D40D12");
 
         PieChart pieChart = findViewById(R.id.pieChart);
