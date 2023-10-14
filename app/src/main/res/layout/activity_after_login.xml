@@ -26,10 +26,10 @@
                 android:layout_height="wrap_content"
                 android:text="Witaj !"
                 android:textColor="#d9d7d7"
-                android:textSize="30dp"
+                android:textSize="25sp"
                 android:id="@+id/WelcomeText"
                 android:gravity="center_horizontal"
-                android:layout_margin="30dp" />
+                android:layout_margin="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,7 +42,7 @@
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChart"
                 android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_height="280dp"
                 android:layout_gravity="center"
 
                 />
@@ -51,8 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
             <LinearLayout
 
                 android:layout_width="0dp"
@@ -65,7 +64,9 @@
                     android:layout_height="wrap_content"
                     android:text="Dodaj"
                     android:backgroundTint="#D40D12"
-                    android:textColor="#d9d7d7"/>
+                    android:textColor="#d9d7d7"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"/>
 
 
             </LinearLayout>
@@ -82,7 +83,9 @@
                     android:layout_height="wrap_content"
                     android:text="Menu"
                     android:backgroundTint="#D40D12"
-                    android:textColor="#d9d7d7"/>
+                    android:textColor="#d9d7d7"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"/>
 
 
             </LinearLayout>
@@ -97,7 +100,9 @@
                     android:layout_height="wrap_content"
                     android:text="Więcej"
                     android:backgroundTint="#D40D12"
-                    android:textColor="#d9d7d7"/>
+                    android:textColor="#d9d7d7"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"/>
 
 
             </LinearLayout>
