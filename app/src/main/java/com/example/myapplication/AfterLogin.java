@@ -21,21 +21,22 @@ public class AfterLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
         GeneratePieChart();
+
     }
 
     public void GeneratePieChart()
     {
         int holeColor = Color.parseColor("#3d3d3d");
-        int chartColor1 = Color.parseColor("#D40D12");
-        int chartColor2 = Color.parseColor("#099490");
+        int chartColor1 = Color.parseColor("#099490");
+        int chartColor2 = Color.parseColor("#D40D12");
 
         PieChart pieChart = findViewById(R.id.pieChart);
         Legend legend = pieChart.getLegend();
 
         //Data for chart
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(30f, "Wartość 1"));
-        entries.add(new PieEntry(40f, "Wartość 2"));
+        entries.add(new PieEntry(30f, "Budżet"));
+        entries.add(new PieEntry(40f, "Wydatki"));
 
 
         //Adding data

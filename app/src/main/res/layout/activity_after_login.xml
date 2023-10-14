@@ -48,7 +48,62 @@
                 />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+                <Button
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dodaj"
+                    android:backgroundTint="#D40D12"
+                    android:textColor="#d9d7d7"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+                <Button
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="Menu"
+                    android:backgroundTint="#D40D12"
+                    android:textColor="#d9d7d7"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+                <Button
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="Więcej"
+                    android:backgroundTint="#D40D12"
+                    android:textColor="#d9d7d7"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
