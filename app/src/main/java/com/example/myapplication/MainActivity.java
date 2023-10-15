@@ -27,20 +27,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonLoginClick(View view)
     {
+
+
         Intent intent = new Intent (this, AfterLogin.class);
         startActivity(intent);
     }
 
     public void loginType(View view)
     {
-        EditText loginText = findViewById(R.id.loginText);
-        loginText.setText("");
+
     }
 
     public void passwordType(View view)
     {
-        EditText passwordText = findViewById(R.id.passwordText);
-        passwordText.setText("");
-        passwordText.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+
     }
 }

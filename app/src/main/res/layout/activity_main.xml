@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Podaj PIN:"
+                android:text="Zaloguj się"
                 android:layout_gravity="center"
                 android:textColor="#d9d7d7"
                 android:textStyle="bold"
@@ -48,35 +48,48 @@
                 />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:inputType="text"
                 android:textColor="#d9d7d7"
                 android:backgroundTint="#757474"
                 android:onClick="loginType"
-                android:text="login"
+                android:hint="login"
+                android:textColorHint = "#808080"
+                android:gravity="center"
                 android:id="@+id/loginText"
                 />
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="#d9d7d7"
                 android:backgroundTint="#757474"
-                android:text="hasło"
+                android:hint="password"
+                android:textColorHint = "#808080"
                 android:onClick="passwordType"
                 android:id="@+id/passwordText"
-                />
+                android:inputType="textPassword"
+                android:gravity="center" />
             <Button
                 android:id="@+id/buttonLogin"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#D40D12"
+                android:textColor="#d9d7d7"
+                android:text="Zaloguj"
+                android:onClick="buttonLoginClick" />
+            <Button
+                android:id="@+id/buttonRegister"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
 
                 android:backgroundTint="#D40D12"
                 android:textColor="#d9d7d7"
-                android:text="Zaloguj"
+                android:text="Załóż konto"
                 android:onClick="buttonLoginClick"
                 />
 
