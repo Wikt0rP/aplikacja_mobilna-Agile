@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,18 +20,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView welcomeText = (TextView) findViewById(R.id.WelcomeText);
+
         welcomeText.setText("Witaj " + userName);
         pinClean = 0;
     }
 
-    public void PinClick(View view)
+    public void buttonLoginClick(View view)
+    {
+
+
+        Intent intent = new Intent (this, AfterLogin.class);
+        startActivity(intent);
+    }
+
+    public void loginType(View view)
     {
 
     }
 
-    public void buttonLoginClick(View view)
+    public void passwordType(View view)
     {
-        Intent intent = new Intent (this, AfterLogin.class);
-        startActivity(intent);
+
+
     }
 }
