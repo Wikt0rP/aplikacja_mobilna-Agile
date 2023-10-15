@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonLoginClick(View view)
     {
-
+        DBConnection conn = new DBConnection("");
+        conn.dbConnect();
 
         Intent intent = new Intent (this, AfterLogin.class);
         startActivity(intent);
