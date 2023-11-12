@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -16,12 +20,45 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class AfterLogin extends AppCompatActivity {
+    private ArrayList<String> arrayList;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
         GeneratePieChart();
+        ListView ListView = (ListView) findViewById(R.id.ListViewBudget);
+        arrayList = new ArrayList<String>();
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+        arrayList.add("Maciek");
+        arrayList.add("Test");
+
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
+        ListView.setAdapter(adapter);
+
+        adapter.notifyDataSetChanged();
 
     }
 
