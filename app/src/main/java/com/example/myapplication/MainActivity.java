@@ -4,6 +4,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView welcomeText = (TextView) findViewById(R.id.WelcomeText);
 
-        welcomeText.setText("Witaj " + userName);
+
         pinClean = 0;
     }
 
@@ -43,4 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }

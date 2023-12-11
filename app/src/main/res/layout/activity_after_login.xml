@@ -24,7 +24,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Witaj !"
+                android:text="CashFlow"
                 android:textColor="#d9d7d7"
                 android:textSize="25sp"
                 android:id="@+id/WelcomeText"
