@@ -3,10 +3,12 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,10 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonLoginClick(View view)
     {
+        EditText userName = (EditText) findViewById(R.id.loginText);
+        EditText password = (EditText) findViewById(R.id.passwordText);
 
+        APIUser apiUser = new APIUser(userName.getText().toString(), password.getText().toString());
+        apiUser.getTokens();
 
-        Intent intent = new Intent (this, AfterLogin.class);
-        startActivity(intent);
+        Log.d("Access Token", apiUser.getAccessToken());
+
     }
 
     public void loginType(View view)
