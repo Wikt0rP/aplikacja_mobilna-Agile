@@ -34,9 +34,16 @@ public class MainActivity extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.passwordText);
 
         APIUser apiUser = new APIUser(userName.getText().toString(), password.getText().toString());
-        apiUser.getTokens();
+        apiUser.getTokens(new TokenCallback()
+        {
+            @Override
+            public void onTokenReceived(String accessToken)
+            {
+                Log.d("Access Token", accessToken);
+                //Open new activity
+            }
+        });
 
-        Log.d("Access Token", apiUser.getAccessToken());
 
     }
 

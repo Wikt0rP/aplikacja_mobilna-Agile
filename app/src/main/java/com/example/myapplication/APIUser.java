@@ -12,6 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
 
 public class APIUser
 {
@@ -19,6 +20,7 @@ public class APIUser
     private String password;
     private String accessToken;
     private String refreshToken;
+    private String baseURL = "http://192.168.1.31:8000/";
 
     public APIUser(String userName, String password)
     {
@@ -26,41 +28,47 @@ public class APIUser
         this.password = password;
     }
 
-    public void getTokens()
+    public void getTokens(TokenCallback callback)
     {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.11:8000/")
+                .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<ResponseBody> call = apiService.createToken(this.userName, this.password);
+        Call<ResponseBody> call = apiService.createToken(userName, password);
 
-        call.enqueue(new Callback<ResponseBody>() {
-
+        call.enqueue(new Callback<ResponseBody>()
+        {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
             {
-
-                try
+                if (response.isSuccessful())
                 {
-                    JSONObject json = new JSONObject(response.body().string());
-                    accessToken = json.getString("access_token");
-                    refreshToken = json.getString("refresh_token");
+                    try
+                    {
+                        JSONObject json = new JSONObject(response.body().string());
+                        accessToken = json.getString("access");
+                        refreshToken = json.getString("refresh");
+                        callback.onTokenReceived(accessToken);
 
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                catch (JSONException | IOException e) {
-                    e.printStackTrace();
+                else {
+                    Log.d("APIUser", "Error: " + response.code());
                 }
-
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                System.out.println("Error: " + t.getMessage());
+            public void onFailure(Call<ResponseBody> call, Throwable t)
+            {
+                Log.d("APIUser", "Failure: " + t.getMessage());
             }
         });
-        ;
+
+
     }
 
     public String getAccessToken()
