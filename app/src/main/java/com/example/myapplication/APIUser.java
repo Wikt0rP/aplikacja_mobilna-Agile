@@ -50,7 +50,7 @@ public class APIUser
                         JSONObject json = new JSONObject(response.body().string());
                         accessToken = json.getString("access");
                         refreshToken = json.getString("refresh");
-                        callback.onTokenReceived(accessToken);
+                        callback.onTokenReceived(accessToken, refreshToken);
 
                     } catch (JSONException | IOException e) {
                         e.printStackTrace();

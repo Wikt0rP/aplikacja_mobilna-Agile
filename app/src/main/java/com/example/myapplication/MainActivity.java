@@ -37,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
         apiUser.getTokens(new TokenCallback()
         {
             @Override
-            public void onTokenReceived(String accessToken)
+            public void onTokenReceived(String accessToken, String refreshToken)
             {
-                Log.d("Access Token", accessToken);
+                Log.d("API Token Access:", accessToken);
+                Log.d("API Token Refresh:", refreshToken);
                 //Open new activity
             }
         });
