@@ -29,7 +29,7 @@ public class APIUser
     public void getTokens()
     {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.3.2:8000/")
+                .baseUrl("http://192.168.1.11:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
