@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("API Token Refresh:", refreshToken);
 
                 Intent intent = new Intent(MainActivity.this, AfterLogin.class);
+                startActivity(intent);
             }
         });
 
