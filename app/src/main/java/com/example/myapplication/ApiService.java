@@ -14,6 +14,6 @@ public interface ApiService
     @POST("/jwt/create")
     Call<ResponseBody> createToken(@Field("username") String username, @Field("password") String password);
 
-    @GET("/wallet/user/")
+    @GET("/wallet/user")
     Call <ResponseBody> getBalance(@Header("Authorization") String AccessToken);
 }
