@@ -19,17 +19,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CashFlow"
-                android:textColor="#d9d7d7"
-                android:textSize="25sp"
+                android:text="Cash"
+                android:textColor="#2FD7C4"
+                android:textSize="40sp"
                 android:id="@+id/WelcomeText"
                 android:gravity="center_horizontal"
-                android:layout_margin="5dp" />
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flow"
+                android:textColor="#4881DF"
+                android:textSize="40sp"
+                android:id="@+id/WelcomeText2"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
@@ -63,8 +77,9 @@
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="Dodaj"
-                    android:backgroundTint="#D40D12"
                     android:textColor="#d9d7d7"
+                    android:backgroundTint="#458ADC"
+                    android:textStyle="bold"
                     android:scaleX="0.9"
                     android:scaleY="0.9"/>
 
@@ -82,8 +97,9 @@
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="Menu"
-                    android:backgroundTint="#D40D12"
                     android:textColor="#d9d7d7"
+                    android:backgroundTint="#458ADC"
+                    android:textStyle="bold"
                     android:scaleX="0.9"
                     android:scaleY="0.9"/>
 
@@ -99,8 +115,9 @@
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="Więcej"
-                    android:backgroundTint="#D40D12"
                     android:textColor="#d9d7d7"
+                    android:backgroundTint="#458ADC"
+                    android:textStyle="bold"
                     android:scaleX="0.9"
                     android:scaleY="0.9"/>
 

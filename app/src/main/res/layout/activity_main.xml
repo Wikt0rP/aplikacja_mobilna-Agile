@@ -126,11 +126,11 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#458ADC"
                 android:onClick="buttonLoginClick"
                 android:padding="12dp"
                 android:text="Zaloguj"
                 android:textColor="#d9d7d7"
+                android:backgroundTint="#458ADC"
                 android:textStyle="bold" />
 
 
