@@ -42,15 +42,22 @@ public class APIBalance
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
             {
-
-                try {
-                    JSONObject jsonObject = new JSONObject(response.body().string());
-                    double balance = Double.parseDouble(jsonObject.getString("kwota"));
-                    balanceCallback.onTokenBalanceReceived(balance);
-                } catch (JSONException | IOException e) {
-                    e.printStackTrace();
+                if (response.body() != null)
+                {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        double balance = Double.parseDouble(jsonObject.getString("kwota"));
+                        balanceCallback.onTokenBalanceReceived(balance);
+                    }
+                    catch (JSONException | IOException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
-
+                else
+                {
+                    Log.d("API Balance", "Error: " + response.code());
+                }
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t)
