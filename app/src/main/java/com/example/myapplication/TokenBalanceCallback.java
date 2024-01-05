@@ -2,5 +2,6 @@ package com.example.myapplication;
 
 public interface TokenBalanceCallback
 {
-    double onTokenBalanceReceived(double balance);
+    void onTokenBalanceReceived(double balance);
+    void onBalanceError(Throwable t);
 }

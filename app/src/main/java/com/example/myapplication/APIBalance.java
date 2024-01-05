@@ -26,7 +26,7 @@ public class APIBalance
         this.refreshToken = refreshToken;
     }
 
-    public double getBalance(TokenBalanceCallback balanceCallback)
+    public void getBalance(TokenBalanceCallback balanceCallback)
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
@@ -42,29 +42,23 @@ public class APIBalance
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
             {
-                try
-                {
+                try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
-                    balance = jsonObject.getDouble("kwota");
+                    double balance = jsonObject.getDouble("kwota");
                     balanceCallback.onTokenBalanceReceived(balance);
-                }
-                catch (JSONException e)
-                {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
+
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t)
             {
                 Log.d("API Balance", "Failed to get balance");
-
+                balanceCallback.onBalanceError(t);
             }
         });
-        return balance;
+
     }
 
 }

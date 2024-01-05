@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,9 +33,8 @@ public class AfterLogin extends AppCompatActivity
 
         String aToken = getIntent().getStringExtra("accessToken");
         String rToken = getIntent().getStringExtra("refreshToken");
-        textViewBudget.setText(String.valueOf(getBudget(aToken, rToken)));
 
-
+        getBudget(aToken, rToken, textViewBudget);
         GeneratePieChart();
         GenerateListView();
 
@@ -82,42 +82,30 @@ public class AfterLogin extends AppCompatActivity
         arrayList.add("Lorem ipsum dolor sit amet");
         arrayList.add("Lorem ipsum dolor sit amet");
         arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
+
 
         adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
         ListView.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
     }
-    public double getBudget(String aToken, String rToken)
+    public void getBudget(String aToken, String rToken, TextView textViewBudget)
     {
         APIBalance apiBalance = new APIBalance(aToken, rToken);
-        return apiBalance.getBalance(new TokenBalanceCallback()
-        {
+        apiBalance.getBalance(new TokenBalanceCallback() {
             @Override
-            public double onTokenBalanceReceived(double balance)
-            {
-                return balance;
+            public void onTokenBalanceReceived(double balance) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        textViewBudget.setText(String.valueOf(balance));
+                    }
+                });
+            }
+
+            @Override
+            public void onBalanceError(Throwable t) {
+                Log.d("API Balance", "Failed to get balance");
             }
         });
     }
