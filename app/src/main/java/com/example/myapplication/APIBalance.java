@@ -55,7 +55,7 @@ public class APIBalance
                     }
                 }
                 else {
-                    Log.d("API Balance", "Response body is null");
+                    Log.d("API Balance", "Response body is null" + response.code());
                     balanceCallback.onBalanceError(new NullPointerException("Response body is null"));
                 }
             }
