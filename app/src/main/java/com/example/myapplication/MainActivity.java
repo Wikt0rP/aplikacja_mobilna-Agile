@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 Log.d("API Token Access:", accessToken);
                 Log.d("API Token Refresh:", refreshToken);
-                //Open new activity
+
+                Intent intent = new Intent(MainActivity.this, AfterLogin.class);
             }
         });
 
