@@ -42,9 +42,10 @@ public class APIBalance
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
             {
+
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
-                    double balance = jsonObject.getDouble("kwota");
+                    double balance = Double.parseDouble(jsonObject.getString("kwota"));
                     balanceCallback.onTokenBalanceReceived(balance);
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
