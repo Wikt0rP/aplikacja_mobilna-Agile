@@ -28,6 +28,7 @@ public class APIBalance
 
     public void getBalance(TokenBalanceCallback balanceCallback)
     {
+        Log.d("API Balance", accessToken);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
