@@ -54,9 +54,9 @@ public class APIBalance
                         e.printStackTrace();
                     }
                 }
-                else
-                {
-                    Log.d("API Balance", "Error: " + response.code());
+                else {
+                    Log.d("API Balance", "Response body is null");
+                    balanceCallback.onBalanceError(new NullPointerException("Response body is null"));
                 }
             }
             @Override
