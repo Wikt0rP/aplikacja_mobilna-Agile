@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.app.AlertDialog;
 import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -13,6 +12,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import java.io.Serializable;
 
 public class APIUser
 {
@@ -134,5 +134,16 @@ public class APIUser
             getTokens();
             return this.refreshToken;
         }
+    }
+    @Override
+    public String toString()
+    {
+        return "APIUser{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                ", baseURL='" + baseURL + '\'' +
+                '}';
     }
 }

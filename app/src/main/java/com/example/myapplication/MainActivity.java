@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
     int pinClean = 0;
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("API Token Refresh:", refreshToken);
 
                 Intent intent = new Intent(MainActivity.this, AfterLogin.class);
+                intent.putExtra("accessToken", accessToken);
+                intent.putExtra("refreshToken", refreshToken);
+
                 startActivity(intent);
             }
         });

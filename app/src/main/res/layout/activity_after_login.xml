@@ -16,6 +16,7 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
+        <!--Logo -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
                 android:layout_marginBottom="10dp"
                 android:textStyle="bold"/>
         </LinearLayout>
-
+        <!--PieChart-->
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -60,6 +61,41 @@
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 />
+
+
+        </LinearLayout>
+        <!--Budget-->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="{kwota}"
+                android:textSize="20dp"
+                android:textColor="#2FD7C4"
+                android:textStyle="bold"
+                android:id="@+id/TextViewBudget"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" PLN"
+                android:textSize="20dp"
+                android:textColor="#4881DF"
+                android:textStyle="bold"
+                >
+
+            </TextView>
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -132,7 +168,8 @@
                 android:id="@+id/ListViewBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                >
 
             </ListView>
 
