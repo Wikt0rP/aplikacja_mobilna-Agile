@@ -16,4 +16,7 @@ public interface ApiService
 
     @GET("/wallet/user")
     Call <ResponseBody> getBalance(@Header("Authorization") String AccessToken);
+
+    @GET("/expense/user")
+    Call <ResponseBody> getExpenses(@Header("Authorization") String AccessToken);
 }

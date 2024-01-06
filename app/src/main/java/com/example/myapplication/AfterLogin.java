@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AfterLogin extends AppCompatActivity
 {
@@ -77,16 +78,33 @@ public class AfterLogin extends AppCompatActivity
     }
     public void GenerateListView()
     {
-        ListView ListView = (ListView) findViewById(R.id.ListViewBudget);
-        arrayList = new ArrayList<String>();
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
-        arrayList.add("Lorem ipsum dolor sit amet");
+        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
+        apiExpense.getExpenses(new ExpensesCallback() {
+            @Override
+            public void onExpenseRecieved(List<Expense> expenses) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ListView ListView = (ListView) findViewById(R.id.ListViewBudget);
+                        arrayList = new ArrayList<String>();
+                        for (Expense expense : expenses)
+                        {
+                            arrayList.add(expense.getTitle() + " " + expense.getAmount());
+                        }
+                        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
+                        ListView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+            }
 
-
+            @Override
+            public void onExpenseError(Throwable t) {
+                Log.d("API Balance", "Failed to get balance");
+            }
+        }
+        );
         adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
-        ListView.setAdapter(adapter);
-
         adapter.notifyDataSetChanged();
     }
     public void getBudget(String aToken, String rToken, TextView textViewBudget)

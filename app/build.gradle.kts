@@ -55,6 +55,9 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("org.apache.httpcomponents:httpclient:4.5.14")
     implementation ("org.apache.httpcomponents:httpcore:4.4.16")
+    implementation ("com.google.code.gson:gson:2.8.9")
+
+
 
 }
 
