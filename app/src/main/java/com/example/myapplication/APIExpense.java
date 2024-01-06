@@ -56,10 +56,10 @@ public class APIExpense
                         {
                             Expense expense = gson.fromJson(jsonArray.getJSONObject(i).toString(), Expense.class);
                             expenses.add(expense);
+                            Log.d("API Expense", "Expense title: " + expense.getTitle() + ", amount: " + expense.getAmount());
                         }
 
                         expensesCallback.onExpenseRecieved(expenses);
-                        Log.d("API Expense", "Response body is not null" + response.code());
                     }
                     catch (JSONException | IOException e)
                     {
