@@ -41,27 +41,31 @@ public class APIExpense
             {
                 if (response.body() != null)
                 {
-                    try {
+                    try
+                    {
                         String jsonData = response.body().string();
-                        JSONObject Jobject = new JSONObject(jsonData);
-                        JSONArray Jarray = Jobject.getJSONArray("expenses");
+                        JSONArray Jarray = new JSONArray(jsonData);
+
                         List<Expense> expenses = new ArrayList<>();
 
                         for(int i=0; i < Jarray.length(); i++)
                         {
                             JSONObject object = Jarray.getJSONObject(i);
 
-                            String title = object.getString("title");
-                            double amount = object.getDouble("amount");
-                            int userid = object.getInt("userid");
-                            int userGroup = object.getInt("userGroup");
+                            String title = object.getString("tytul");
+                            double amount = object.getDouble("kwota");
+                            int userid = object.getInt("idKlientaUser");
+                            int userGroup = object.isNull("idKlientaGrupa") ? null : object.getInt("idKlientaGrupa");
+
 
                             Expense expense = new Expense(amount, title, userid, userGroup);
-                            expenses.add(expense);
 
-                            expensesCallback.onExpenseRecieved(expenses);
-                            Log.d("API Expense", "Lista wydatków: " + expenses.toString());
+                            expenses.add(expense);
                         }
+
+                        expensesCallback.onExpenseRecieved(expenses);
+
+                        Log.d("API Expense", "Received expenses: " + expenses.toString());
                     }
                     catch (Exception e)
                     {
