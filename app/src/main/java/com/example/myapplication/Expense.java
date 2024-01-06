@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+
 public class Expense
 {
     private Double amount;
@@ -45,5 +47,16 @@ public class Expense
 
     public void setUserGroup(Integer userGroup) {
         this.userGroup = userGroup;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "amount=" + amount +
+                ", title='" + title + '\'' +
+                ", userid=" + userid +
+                ", userGroup=" + userGroup +
+                '}';
     }
 }

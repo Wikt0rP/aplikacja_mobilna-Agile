@@ -2,9 +2,8 @@ package com.example.myapplication;
 import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -12,10 +11,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
-import java.util.List;
+
 
 public class APIExpense
 {
@@ -32,47 +28,57 @@ public class APIExpense
 
     public void getExpenses(ExpensesCallback expensesCallback)
     {
-
-        Log.d("API Expenses", accessToken);
+        Log.d("API Expense", accessToken);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<ResponseBody> call = apiService.getBalance("Bearer " + accessToken);
-
-        call.enqueue(new Callback<ResponseBody>()
+        apiService.getExpenses("Bearer " + accessToken).enqueue(new Callback<ResponseBody>()
         {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
             {
-                if (response.isSuccessful())
+                if (response.body() != null)
                 {
                     try {
-                        JSONArray jsonArray = new JSONArray(response.body().string());
-                        Type listType = new TypeToken<List<Expense>>() {}.getType();
-                        List<Expense> expenses = new Gson().fromJson(String.valueOf(jsonArray), listType);
-                        Log.d("API Expenses", "Number of expenses received: " + expenses.size());
-                        expensesCallback.onExpenseRecieved(expenses);
+                        String jsonData = response.body().string();
+                        JSONObject Jobject = new JSONObject(jsonData);
+                        JSONArray Jarray = Jobject.getJSONArray("expenses");
+                        List<Expense> expenses = new ArrayList<>();
+
+                        for(int i=0; i < Jarray.length(); i++)
+                        {
+                            JSONObject object = Jarray.getJSONObject(i);
+
+                            String title = object.getString("title");
+                            double amount = object.getDouble("amount");
+                            int userid = object.getInt("userid");
+                            int userGroup = object.getInt("userGroup");
+
+                            Expense expense = new Expense(amount, title, userid, userGroup);
+                            expenses.add(expense);
+
+                            expensesCallback.onExpenseRecieved(expenses);
+                            Log.d("API Expense", "Lista wydatków: " + expenses.toString());
+                        }
                     }
-                    catch (JSONException | IOException e)
+                    catch (Exception e)
                     {
                         e.printStackTrace();
                     }
                 }
                 else {
-                    Log.d("API Balance", "Response body is null" + response.code());
+                    Log.d("API Expense", "Response body is null" + response.code());
                     expensesCallback.onExpenseError(new NullPointerException("Response body is null"));
                 }
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t)
             {
-                Log.d("API Balance", "Failed to get balance");
+                Log.d("API Expense", "Failed to get expenses");
                 expensesCallback.onExpenseError(t);
             }
         });
-
     }
 }
