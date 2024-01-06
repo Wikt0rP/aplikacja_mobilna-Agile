@@ -78,13 +78,18 @@ public class AfterLogin extends AppCompatActivity
     }
     public void GenerateListView()
     {
+
         APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
         apiExpense.getExpenses(new ExpensesCallback() {
             @Override
-            public void onExpenseRecieved(List<Expense> expenses) {
+            public void onExpenseRecieved(List<Expense> expenses)
+            {
+                Log.d("API Expense", "Received expenses: " + expenses.toString());
                 runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
+                    public void run()
+                    {
+                        Log.d("API Expense", "Got Expenses - ListView");
                         ListView ListView = (ListView) findViewById(R.id.ListViewBudget);
                         arrayList = new ArrayList<String>();
                         for (Expense expense : expenses)
