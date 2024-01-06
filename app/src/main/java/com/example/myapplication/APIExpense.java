@@ -1,6 +1,8 @@
 package com.example.myapplication;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,14 +42,19 @@ public class APIExpense
         apiService.getExpenses("Bearer " + accessToken).enqueue(new Callback<ResponseBody>()
         {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response)
             {
                 if (response.body() != null)
                 {
+                    List<Double> expenses = new ArrayList<>();
                     try {
-                        JSONObject jsonObject = new JSONObject(response.body().string());
-                        double balance = Double.parseDouble(jsonObject.getString("kwota"));
-                        expensesCallback.onExpenseRecieved(balance);
+                        JSONArray jsonArray = new JSONArray(response.body().string());
+                        for(int i=0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            expenses.add(jsonObject.getDouble("kwota"));
+                            // reszta Twojego kodu...
+                        }
+                        expensesCallback.onExpenseRecieved(expenses);
                         Log.d("API Expense", "Response body is not null" + response.code());
                     }
                     catch (JSONException | IOException e)
@@ -61,7 +68,7 @@ public class APIExpense
                 }
             }
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t)
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t)
             {
                 Log.d("API Expense", "Failed to get expenses");
                 expensesCallback.onExpenseError(t);

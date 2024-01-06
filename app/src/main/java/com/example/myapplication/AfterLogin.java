@@ -81,21 +81,16 @@ public class AfterLogin extends AppCompatActivity
        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
        apiExpense.getExpenses(new ExpensesCallback()
        {
-           @Override
-           public void onExpenseRecieved(double expenses)
-           {
-               runOnUiThread(new Runnable() {
-                   @Override
-                   public void run()
-                   {
-                       Log.d("API Expense", "Kwota: " + expenses);
 
-                   }
-               });
+           @Override
+           public void onExpenseRecieved(List<Double> expenses)
+           {
+               Log.d("API Expense", "Response :" + expenses);
            }
 
            @Override
-           public void onExpenseError(Throwable t) {
+           public void onExpenseError(Throwable t)
+           {
 
            }
        });
