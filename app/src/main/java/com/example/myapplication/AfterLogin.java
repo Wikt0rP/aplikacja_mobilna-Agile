@@ -78,6 +78,27 @@ public class AfterLogin extends AppCompatActivity
     }
     public void GenerateListView()
     {
+       APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
+       apiExpense.getExpenses(new ExpensesCallback()
+       {
+           @Override
+           public void onExpenseRecieved(double expenses)
+           {
+               runOnUiThread(new Runnable() {
+                   @Override
+                   public void run()
+                   {
+                       Log.d("API Expense", "Kwota: " + expenses);
+
+                   }
+               });
+           }
+
+           @Override
+           public void onExpenseError(Throwable t) {
+
+           }
+       });
 
     }
     public void getBudget(String aToken, String rToken, TextView textViewBudget)
