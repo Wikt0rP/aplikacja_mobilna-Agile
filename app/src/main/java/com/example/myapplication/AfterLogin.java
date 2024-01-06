@@ -2,9 +2,12 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -121,5 +124,22 @@ public class AfterLogin extends AppCompatActivity
                 Log.d("API Balance", "Failed to get balance");
             }
         });
+    }
+
+    public void buttonDodaj(View view)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Wybierz opcję");
+        String[] options = {"Budżet", "Wydatek"};
+        builder.setItems(options, (dialog, which) ->
+        {
+            switch (which) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+            }
+        });
+        builder.show();
     }
 }

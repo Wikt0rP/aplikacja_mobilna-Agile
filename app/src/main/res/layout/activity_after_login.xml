@@ -117,7 +117,8 @@
                     android:backgroundTint="#458ADC"
                     android:textStyle="bold"
                     android:scaleX="0.9"
-                    android:scaleY="0.9"/>
+                    android:scaleY="0.9"
+                    android:onClick="buttonDodaj"/>
 
 
             </LinearLayout>
