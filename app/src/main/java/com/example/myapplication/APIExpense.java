@@ -47,7 +47,7 @@ public class APIExpense
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
             {
-                if (response.body() != null)
+                if (response.isSuccessful())
                 {
                     try {
                         JSONArray jsonArray = new JSONArray(response.body().string());
