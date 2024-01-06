@@ -52,7 +52,7 @@ public class APIExpense
                         for(int i=0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             expenses.add(jsonObject.getDouble("kwota"));
-                            // reszta Twojego kodu...
+
                         }
                         expensesCallback.onExpenseRecieved(expenses);
                         Log.d("API Expense", "Response body is not null" + response.code());
