@@ -89,7 +89,7 @@ public class AfterLogin extends AppCompatActivity
                {
                    expenseList.add(expense.getTitle() + ": " + expense.getAmount() + "zł");
                }
-               ArrayAdapter<String> adapter = new ArrayAdapter<>(AfterLogin.this, android.R.layout.simple_list_item_1, expenseList);
+               ExpenseAdapter adapter = new ExpenseAdapter(AfterLogin.this, expenses);
                ListView listView = findViewById(R.id.ListViewBudget);
                listView.setAdapter(adapter);
            }
