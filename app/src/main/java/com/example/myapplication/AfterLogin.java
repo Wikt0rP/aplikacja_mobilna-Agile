@@ -85,7 +85,8 @@ public class AfterLogin extends AppCompatActivity
             public void onExpenseRecieved(List<Expense> expenses)
             {
                 Log.d("API Expense", "Received expenses: " + expenses.toString());
-                runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable()
+                {
                     @Override
                     public void run()
                     {
@@ -101,6 +102,7 @@ public class AfterLogin extends AppCompatActivity
                         adapter.notifyDataSetChanged();
                     }
                 });
+
             }
 
             @Override
