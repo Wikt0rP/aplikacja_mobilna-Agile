@@ -34,7 +34,6 @@ public class APIExpense
     {
 
         Log.d("API Expenses", accessToken);
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -54,6 +53,7 @@ public class APIExpense
                         JSONArray jsonArray = new JSONArray(response.body().string());
                         Type listType = new TypeToken<List<Expense>>() {}.getType();
                         List<Expense> expenses = new Gson().fromJson(String.valueOf(jsonArray), listType);
+                        Log.d("API Expenses", "Number of expenses received: " + expenses.size());
                         expensesCallback.onExpenseRecieved(expenses);
                     }
                     catch (JSONException | IOException e)

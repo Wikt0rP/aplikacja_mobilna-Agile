@@ -35,7 +35,6 @@ public class APIBalance
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-
         Call<ResponseBody> call = apiService.getBalance("Bearer " + accessToken);
 
         call.enqueue(new Callback<ResponseBody>()
