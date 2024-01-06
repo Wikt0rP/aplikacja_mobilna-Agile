@@ -36,8 +36,8 @@ public class ExpenseAdapter extends ArrayAdapter<Expense>
         amountView.setText(String.valueOf(expense.getAmount()));
 
         // Ustawianie kolorów tekstu
-        titleView.setTextColor(Color.parseColor("#2FD7C4"));
-        amountView.setTextColor(Color.parseColor("#4881DF"));
+        titleView.setTextColor(Color.parseColor("#4881DF"));
+        amountView.setTextColor(Color.parseColor("#2FD7C4"));
 
         return rowView;
     }
