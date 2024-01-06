@@ -2,11 +2,19 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Expense
 {
+    @SerializedName("id")
+    private Integer id;
+    @SerializedName("kwota")
     private Double amount;
+    @SerializedName("tytul")
     private String title;
+    @SerializedName("idKlientaUser")
     private Integer userid;
+    @SerializedName("idKlientaGrupa")
     private Integer userGroup;
 
     public Expense(Double amount, String title, int userid, int userGroup)
