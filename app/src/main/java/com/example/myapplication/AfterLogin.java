@@ -78,41 +78,7 @@ public class AfterLogin extends AppCompatActivity
     }
     public void GenerateListView()
     {
-        Log.d("API Expense", "Generating ListView");
-        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
-        apiExpense.getExpenses(new ExpensesCallback() {
-            @Override
-            public void onExpenseRecieved(List<Expense> expenses)
-            {
-                Log.d("API Expense", "Ex received");
 
-                Log.d("API Expense", "Received expenses: " + expenses.toString());
-                runOnUiThread(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        Log.d("API Expense", "Got Expenses - ListView");
-                        ListView ListView = (ListView) findViewById(R.id.ListViewBudget);
-                        arrayList = new ArrayList<String>();
-                        for (Expense expense : expenses)
-                        {
-                            arrayList.add(expense.getTitle() + " " + expense.getAmount());
-                        }
-                        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
-                        ListView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-
-            }
-
-            @Override
-            public void onExpenseError(Throwable t) {
-                Log.d("API Expense", "Failed to get Expenses");
-            }
-        }
-        );
     }
     public void getBudget(String aToken, String rToken, TextView textViewBudget)
     {

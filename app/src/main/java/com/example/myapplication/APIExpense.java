@@ -2,7 +2,10 @@ package com.example.myapplication;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import okhttp3.ResponseBody;
@@ -41,39 +44,19 @@ public class APIExpense
             {
                 if (response.body() != null)
                 {
-                    try
-                    {
-                        String jsonData = response.body().string();
-                        JSONArray Jarray = new JSONArray(jsonData);
-
-                        List<Expense> expenses = new ArrayList<>();
-
-                        for(int i=0; i < Jarray.length(); i++)
-                        {
-                            JSONObject object = Jarray.getJSONObject(i);
-
-                            String title = object.getString("tytul");
-                            double amount = object.getDouble("kwota");
-                            int userid = object.getInt("idKlientaUser");
-                            int userGroup = object.isNull("idKlientaGrupa") ? null : object.getInt("idKlientaGrupa");
-
-
-                            Expense expense = new Expense(amount, title, userid, userGroup);
-
-                            expenses.add(expense);
-                        }
-
-                        expensesCallback.onExpenseRecieved(expenses);
-
-                        Log.d("API Expense", "Received expenses: " + expenses.toString());
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        double balance = Double.parseDouble(jsonObject.getString("kwota"));
+                        expensesCallback.onExpenseRecieved(balance);
+                        Log.d("API Expense", "Response body is not null" + response.code());
                     }
-                    catch (Exception e)
+                    catch (JSONException | IOException e)
                     {
                         e.printStackTrace();
                     }
                 }
                 else {
-                    Log.d("API Expense", "Response body is null" + response.code());
+                    Log.d("API Balance", "Response body is null" + response.code());
                     expensesCallback.onExpenseError(new NullPointerException("Response body is null"));
                 }
             }
