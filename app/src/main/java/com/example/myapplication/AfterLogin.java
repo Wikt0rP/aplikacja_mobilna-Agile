@@ -100,12 +100,10 @@ public class AfterLogin extends AppCompatActivity
 
             @Override
             public void onExpenseError(Throwable t) {
-                Log.d("API Balance", "Failed to get balance");
+                Log.d("API Expense", "Failed to get Expenses");
             }
         }
         );
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
-        adapter.notifyDataSetChanged();
     }
     public void getBudget(String aToken, String rToken, TextView textViewBudget)
     {
