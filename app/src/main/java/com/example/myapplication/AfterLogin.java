@@ -78,12 +78,14 @@ public class AfterLogin extends AppCompatActivity
     }
     public void GenerateListView()
     {
-
+        Log.d("API Expense", "Generating ListView");
         APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
         apiExpense.getExpenses(new ExpensesCallback() {
             @Override
             public void onExpenseRecieved(List<Expense> expenses)
             {
+                Log.d("API Expense", "Ex received");
+
                 Log.d("API Expense", "Received expenses: " + expenses.toString());
                 runOnUiThread(new Runnable()
                 {
