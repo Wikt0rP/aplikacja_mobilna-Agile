@@ -81,11 +81,17 @@ public class AfterLogin extends AppCompatActivity
        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
        apiExpense.getExpenses(new ExpensesCallback()
        {
-
            @Override
-           public void onExpenseRecieved(List<Double> expenses)
+           public void onExpenseRecieved(List<Expense> expenses)
            {
-               Log.d("API Expense", "Response :" + expenses);
+                List<String> expenseList = new ArrayList<>();
+               for (Expense expense : expenses)
+               {
+                   expenseList.add(expense.getTitle() + ": " + expense.getAmount() + "zł");
+               }
+               ArrayAdapter<String> adapter = new ArrayAdapter<>(AfterLogin.this, android.R.layout.simple_list_item_1, expenseList);
+               ListView listView = findViewById(R.id.ListViewBudget);
+               listView.setAdapter(adapter);
            }
 
            @Override

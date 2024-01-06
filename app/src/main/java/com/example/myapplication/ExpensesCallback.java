@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ExpensesCallback
 {
-    void onExpenseRecieved(List<Double> expenses);
+    void onExpenseRecieved(List<Expense> expenses);
     void onExpenseError(Throwable t);
 }

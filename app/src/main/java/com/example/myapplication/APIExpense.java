@@ -3,6 +3,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,14 +48,16 @@ public class APIExpense
             {
                 if (response.body() != null)
                 {
-                    List<Double> expenses = new ArrayList<>();
                     try {
                         JSONArray jsonArray = new JSONArray(response.body().string());
-                        for(int i=0; i < jsonArray.length(); i++) {
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            expenses.add(jsonObject.getDouble("kwota"));
-
+                        Gson gson = new Gson();
+                        List<Expense> expenses = new ArrayList<>();
+                        for (int i = 0; i < jsonArray.length(); i++)
+                        {
+                            Expense expense = gson.fromJson(jsonArray.getJSONObject(i).toString(), Expense.class);
+                            expenses.add(expense);
                         }
+
                         expensesCallback.onExpenseRecieved(expenses);
                         Log.d("API Expense", "Response body is not null" + response.code());
                     }
