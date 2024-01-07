@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -130,13 +131,19 @@ public class AfterLogin extends AppCompatActivity
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Wybierz opcję");
-        String[] options = {"Budżet", "Wydatek"};
+        String[] options = {"Dodaj/usuń pieniądze", "Wydatek"};
         builder.setItems(options, (dialog, which) ->
         {
             switch (which) {
                 case 0:
+                    Intent intent = new Intent(this, addMoney.class);
+                    startActivity(intent);
+                    Log.d("AfterLogin", "Dodaj/usuń pieniądze");
                     break;
                 case 1:
+                    Intent intent2 = new Intent(this, addExpense.class);
+                    startActivity(intent2);
+                    Log.d("AfterLogin", "Wydatek");
                     break;
             }
         });
