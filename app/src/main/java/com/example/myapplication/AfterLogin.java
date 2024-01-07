@@ -46,15 +46,21 @@ public class AfterLogin extends AppCompatActivity
         GenerateListView();
         if(budgetSum != null && expensesSum != null)
         {
+
             float difference = budgetSum - expensesSum;
             if(difference > 0)
             {
                 GeneratePieChart(difference, expensesSum);
+                Log.d("Wykres", "Budget: " + difference + " Expenses: " + expensesSum);
+
             }
             else
             {
                 GeneratePieChart(0, expensesSum);
+                Log.d("Wykres", "Budget: " + difference + " Expenses: " + expensesSum);
+
             }
+            Log.d("Wykres", "Budget: " + budgetSum + " Expenses: " + expensesSum);
         }
 
 
