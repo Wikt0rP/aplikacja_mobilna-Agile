@@ -61,10 +61,10 @@ public class RemoveExpenseActivity extends AppCompatActivity {
         listViewSet.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                ExpenseAdapter adapter2 = new ExpenseAdapter(RemoveExpenseActivity.this, expenseList);
+                ExpenseAdapter adapter = new ExpenseAdapter(RemoveExpenseActivity.this, expenseList);
                 Expense expenseToRemove = expenseList.get(position);
                 expenseList.remove(position);
-                adapter2.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
                 APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
                 apiExpense.deleteExpense(new DeleteExpenseCallback() {
