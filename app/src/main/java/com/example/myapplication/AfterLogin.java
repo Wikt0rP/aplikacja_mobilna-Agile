@@ -116,7 +116,7 @@ public class AfterLogin extends AppCompatActivity
                textViewSum.setText(String.valueOf(sum));
 
 
-               GeneratePieChart(budgetSum, (float) sum);
+               GeneratePieChart(budgetSum-(float)sum, (float) sum);
                Log.d("Wykres", "Budget: " + budgetSum + " Expenses: " + sum);
 
            }
