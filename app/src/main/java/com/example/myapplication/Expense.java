@@ -24,6 +24,13 @@ public class Expense
         this.userid = userid;
         this.userGroup = userGroup;
     }
+    public Expense(Double amount, String title)
+    {
+        this.amount = amount;
+        this.title = title;
+        userid = null;
+        userGroup = null;
+    }
 
     public Double getAmount() {
         return amount;
@@ -37,25 +44,25 @@ public class Expense
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public Integer getUserGroup() {
-        return userGroup;
-    }
-
-    public void setUserGroup(Integer userGroup) {
-        this.userGroup = userGroup;
-    }
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+//    public Integer getUserid() {
+//        return userid;
+//    }
+//
+//    public void setUserid(Integer userid) {
+//        this.userid = userid;
+//    }
+//
+//    public Integer getUserGroup() {
+//        return userGroup;
+//    }
+//
+//    public void setUserGroup(Integer userGroup) {
+//        this.userGroup = userGroup;
+//    }
 
     @NonNull
     @Override

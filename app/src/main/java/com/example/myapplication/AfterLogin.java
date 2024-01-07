@@ -83,6 +83,7 @@ public class AfterLogin extends AppCompatActivity
     }
     public void GenerateListView()
     {
+
        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
        apiExpense.getExpenses(new ExpensesCallback()
        {
@@ -97,7 +98,8 @@ public class AfterLogin extends AppCompatActivity
                    sum += expense.getAmount();
                    Log.d("Expense", "razem: " + expense.getAmount());
                }
-               expenseList.add("Razem: " + sum + "zł");
+               Expense sumEx = new Expense(this.sum, "Razem");
+               expenses.add(sumEx);
                Collections.reverse(expenseList);
                ExpenseAdapter adapter = new ExpenseAdapter(AfterLogin.this, expenses);
                ListView listView = findViewById(R.id.ListViewBudget);
