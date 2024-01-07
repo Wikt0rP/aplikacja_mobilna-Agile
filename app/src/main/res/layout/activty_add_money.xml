@@ -36,12 +36,13 @@
 
         <Button
             android:id="@+id/buttonAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
             android:text="Dodaj do konta"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:backgroundTint="#4881DF"
-            android:onClick="buttonAddMoney"/>
+            android:onClick="buttonAddMoney"
+            />
 
     </LinearLayout>
 
