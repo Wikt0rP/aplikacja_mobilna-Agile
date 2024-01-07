@@ -36,6 +36,7 @@ public interface ApiService
     @POST("/expense/create/")
     Call <ResponseBody> addExpense(@Header("Authorization") String AccessToken, @Field("kwota") double amount, @Field("tytul") String title);
 
+    @FormUrlEncoded
     @DELETE("/expense/delete")
     Call <ResponseBody> deleteExpense(@Header("Authorization") String AccessToken, @Field("id") int id);
 
