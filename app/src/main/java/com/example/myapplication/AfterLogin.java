@@ -31,6 +31,7 @@ public class AfterLogin extends AppCompatActivity
     //private ArrayList<String> arrayList;
     //private ArrayAdapter<String> adapter;
     private Float budgetSum = 0f;
+    private Float expenseSum =  0f;
 
 
     @Override
@@ -52,10 +53,10 @@ public class AfterLogin extends AppCompatActivity
 
     public void GeneratePieChart(float budget, float expenses)
     {
-        if (budget == 0 && expenses == 0)
+        if (budget <= 0 && expenses == 0)
         {
-            budget = 30f;
-            expenses = 40f;
+            budget = 0f;
+            expenses = 100f;
         }
         int holeColor = Color.parseColor("#3d3d3d");
         int chartColor1 = Color.parseColor("#4881DF");
@@ -114,7 +115,7 @@ public class AfterLogin extends AppCompatActivity
                listView.setAdapter(adapter);
                TextView textViewSum = findViewById(R.id.TVSum);
                textViewSum.setText(String.valueOf(sum));
-
+               expenseSum = (float)sum;
 
                GeneratePieChart(budgetSum-(float)sum, (float) sum);
                Log.d("Wykres", "Budget: " + budgetSum + " Expenses: " + sum);
@@ -144,6 +145,7 @@ public class AfterLogin extends AppCompatActivity
 
                 });
                 budgetSum = (float) balance;
+                GeneratePieChart((float)balance-expenseSum, expenseSum);
             }
 
             @Override
