@@ -184,8 +184,8 @@ public class AfterLogin extends AppCompatActivity
 
     public void moneyLeft(float budget, float expenses)
     {
-        float moneyLeft = budget - expenses;
+
         TextView textViewMoneyLeft = findViewById(R.id.MoneyLeft);
-        textViewMoneyLeft.setText(String.valueOf(moneyLeft));
+        textViewMoneyLeft.setText(String.valueOf(budget-expenses));
     }
 }
