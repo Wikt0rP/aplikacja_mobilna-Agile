@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#3d3d3d"
-    tools:context=".addMoney">
-
+    tools:context=".ActivityExpenseAdd"
+    android:background="#3d3d3d">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dodaj środki do portfela:"
+            android:text="Dodaj wydatek:"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="#4881DF"
@@ -44,6 +44,25 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <EditText
+                    android:id="@+id/etEditTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="25sp"
+
+                    android:hint="Wprowadź tytuł" />
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,23 +70,23 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editMoney"
+                    android:id="@+id/etExpenseAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:gravity="center"
                     android:textSize="25sp"
 
-                    android:hint="Kwota" />
-            </LinearLayout>
+                    android:hint="Wprowadź kwotę" />
 
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="vertical"
                 android:layout_marginTop="50dp"
->
+                >
                 <Button
                     android:id="@+id/buttonLogin"
                     android:layout_width="130dp"
@@ -78,12 +97,8 @@
                     android:textColor="#d9d7d7"
                     android:backgroundTint="#458ADC"
                     android:textStyle="bold"
-                    android:onClick="buttonAddMoney"/>
+                    android:onClick="buttonAddExpense"/>
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
