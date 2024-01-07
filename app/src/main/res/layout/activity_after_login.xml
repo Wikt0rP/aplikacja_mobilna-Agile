@@ -174,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wydatki:"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:textColor="#4881DF"
                     android:textStyle="bold"
                     android:layout_weight="1"
@@ -202,7 +202,43 @@
                     android:layout_marginRight="20dp"
                     />
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wolne pieniądze:"
+                    android:textSize="22dp"
+                    android:textColor="#4881DF"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"/>
+                <TextView
+                    android:id="@+id/MoneyLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="{Pozostale}"
+                    android:textSize="18dp"
+                    android:textColor="#2FD7C4"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_weight="10"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLN"
+                    android:textSize="18dp"
+                    android:textColor="#4881DF"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    />
+            </LinearLayout>
 
             <ListView
                 android:id="@+id/ListViewBudget"

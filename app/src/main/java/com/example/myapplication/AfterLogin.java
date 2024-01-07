@@ -51,6 +51,7 @@ public class AfterLogin extends AppCompatActivity
 
     public void GeneratePieChart(float budget, float expenses)
     {
+        moneyLeft(budget, expenses);
         if (budget <= 0)
         {
             budget = 0f;
@@ -179,5 +180,12 @@ public class AfterLogin extends AppCompatActivity
             }
         });
         builder.show();
+    }
+
+    public void moneyLeft(float budget, float expenses)
+    {
+        float moneyLeft = budget - expenses;
+        TextView textViewMoneyLeft = findViewById(R.id.MoneyLeft);
+        textViewMoneyLeft.setText(String.valueOf(moneyLeft));
     }
 }
