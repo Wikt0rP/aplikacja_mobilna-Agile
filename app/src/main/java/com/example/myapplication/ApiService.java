@@ -21,8 +21,9 @@ public interface ApiService
     @GET("/wallet/user")
     Call <ResponseBody> getBalance(@Header("Authorization") String AccessToken);
 
+    @FormUrlEncoded
     @POST("/wallet/add")
-    Call <ResponseBody> addMoney(@Header("Authorization") String AccessToken, @Field("amount") double amount);
+    Call <ResponseBody> addMoney(@Header("Authorization") String AccessToken, @Field("kwota") double amount);
 
 
 
