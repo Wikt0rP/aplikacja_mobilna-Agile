@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import okhttp3.ResponseBody;
+
 
 public class ActivityExpenseAdd extends AppCompatActivity
 {
@@ -43,9 +45,8 @@ public class ActivityExpenseAdd extends AppCompatActivity
         APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
         apiExpense.createExpense(new CreateExpenseCallback() {
             @Override
-            public void onSuccess(double balance)
-            {
-                Log.d("addExpense", "Stan konta po dodaniu wydatku: " + balance);
+            public void onSuccess(ResponseBody response) {
+                Log.d("addExpense", "Stan konta po dodaniu wydatku: " + response);
                 Intent intent = new Intent(ActivityExpenseAdd.this, AfterLogin.class);
                 intent.putExtra("accessToken", getIntent().getStringExtra("accessToken"));
                 intent.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
@@ -53,14 +54,13 @@ public class ActivityExpenseAdd extends AppCompatActivity
             }
 
             @Override
-            public void onError(Throwable t)
-            {
-                Log.d("addExpense", "Błąd podczas dodawania wydatku: " + t.getMessage());
+            public void onError(String errorMessage) {
+                Log.d("addExpense", "Błąd podczas dodawania wydatku: " + errorMessage);
                 Intent intent = new Intent(ActivityExpenseAdd.this, AfterLogin.class);
                 intent.putExtra("accessToken", getIntent().getStringExtra("accessToken"));
                 intent.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
                 startActivity(intent);
             }
-        });
+        }, expense, title);
     }
 }

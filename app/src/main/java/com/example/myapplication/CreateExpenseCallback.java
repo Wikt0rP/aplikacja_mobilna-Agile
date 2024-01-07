@@ -4,6 +4,6 @@ import okhttp3.ResponseBody;
 
 public interface CreateExpenseCallback
 {
-    void onSuccess(double balance);
-    void onError(Throwable t);
+    void onSuccess(ResponseBody response);
+    void onError(String errorMessage);
 }

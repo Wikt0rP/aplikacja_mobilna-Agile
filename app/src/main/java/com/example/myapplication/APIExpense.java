@@ -81,40 +81,27 @@ public class APIExpense
         });
     }
 
-    public void createExpense(CreateExpenseCallback createExpenseCallback)
+    public void createExpense(CreateExpenseCallback createExpenseCallback, double amount, String title)
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
-        apiService.addExpense("Bearer " + accessToken, amount, title).enqueue(new Callback<ResponseBody>()
-        {
+        apiService.addExpense("Bearer " + accessToken, amount, title).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response)
-            {
-                if (response.body() != null)
-                {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response.body().string());
-                        double balance = Double.parseDouble(jsonObject.getString("kwota"));
-                        createExpenseCallback.onSuccess(balance);
-                    }
-                    catch (JSONException | IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-                else {
-                    Log.d("API Expense", "Response body is null" + response.code());
-                    createExpenseCallback.onError(new NullPointerException("Response body is null"));
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    createExpenseCallback.onSuccess(response.body());
+                } else {
+                    createExpenseCallback.onError("Błąd serwera: " + response.code());
                 }
             }
+
             @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t)
-            {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 Log.d("API Expense", "Failed to create expense");
-                createExpenseCallback.onError(t);
+                createExpenseCallback.onError(t.getMessage());
             }
         });
     }
