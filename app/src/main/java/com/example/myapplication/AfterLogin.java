@@ -181,6 +181,7 @@ public class AfterLogin extends AppCompatActivity
                     Intent intent3 = new Intent(AfterLogin.this, RemoveExpenseActivity.class);
                     intent3.putExtra("accessToken", getIntent().getStringExtra("accessToken"));
                     intent3.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
+                    startActivity(intent3);
                     Log.d("AfterLogin", "Anuluj");
                     break;
             }
