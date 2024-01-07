@@ -12,38 +12,61 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:gravity="center">
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wprowadź kwotę do dodania:"
-            android:textSize="27sp"
-            android:textStyle="bold"
-            android:textColor="#4881DF"
-            android:layout_marginBottom="70dp"
-            />
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wprowadź kwotę do dodania:"
+                    android:textSize="27sp"
+                    android:textStyle="bold"
+                    android:textColor="#4881DF"
 
-        <EditText
-            android:id="@+id/editMoney"
-            android:layout_width="match_parent"
+                    />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:gravity="center"
-            android:textSize="25sp"
-            android:layout_marginBottom="70dp"
+            android:orientation="horizontal"
 
-            android:hint="Wprowadź kwotę" />
+            android:layout_weight="1"
+            android:gravity="center">
+                <EditText
+                    android:id="@+id/editMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:gravity="center"
+                    android:textSize="25sp"
 
-        <Button
-            android:layout_width="95dp"
+                    android:hint="Wprowadź kwotę" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dodaj"
-            android:textColor="#d9d7d7"
-            android:backgroundTint="#458ADC"
-            android:textStyle="bold"
-            android:scaleX="0.9"
-            android:scaleY="0.9"
-            android:onClick="buttonAddMoney"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center">
+
+
+            <Button
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:text="Dodaj"
+                android:textColor="#d9d7d7"
+                android:backgroundTint="#458ADC"
+                android:textStyle="bold"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                android:onClick="buttonAddMoney"/>
+        </LinearLayout>
 
     </LinearLayout>
 
