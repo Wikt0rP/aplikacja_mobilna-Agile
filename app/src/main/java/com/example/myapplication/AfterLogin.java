@@ -107,7 +107,7 @@ public class AfterLogin extends AppCompatActivity
            @Override
            public void onExpenseError(Throwable t)
            {
-
+                Log.d("API Expense", "Failed to get expenses");
            }
        });
 
