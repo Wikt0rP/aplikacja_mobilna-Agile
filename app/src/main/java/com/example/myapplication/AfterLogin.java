@@ -159,7 +159,7 @@ public class AfterLogin extends AppCompatActivity
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Wybierz opcję");
-        String[] options = {"Dodaj/usuń pieniądze", "Wydatek"};
+        String[] options = {"Dodaj/usuń pieniądze", "Dodaj Wydatek", "Usuń wydatek"};
         builder.setItems(options, (dialog, which) ->
         {
             switch (which) {
@@ -176,6 +176,12 @@ public class AfterLogin extends AppCompatActivity
                     intent2.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
                     startActivity(intent2);
                     Log.d("AfterLogin", "Wydatek");
+                    break;
+                case 2:
+                    Intent intent3 = new Intent(AfterLogin.this, RemoveExpenseActivity.class);
+                    intent3.putExtra("accessToken", getIntent().getStringExtra("accessToken"));
+                    intent3.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
+                    Log.d("AfterLogin", "Anuluj");
                     break;
             }
         });
