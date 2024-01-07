@@ -28,6 +28,7 @@ public class RemoveExpenseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_remove_expense);
@@ -39,13 +40,12 @@ public class RemoveExpenseActivity extends AppCompatActivity {
 
         View listView = findViewById(R.id.listView);
         List<Expense> expenseList = new ArrayList<>();
-
+        ExpenseAdapter adapter = new ExpenseAdapter(this, expenseList);
         APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
         apiExpense.getExpenses(new ExpensesCallback() {
             @Override
             public void onExpenseRecieved(List<Expense> expenses) {
                 expenseList.addAll(expenses);
-                ExpenseAdapter adapter = new ExpenseAdapter(RemoveExpenseActivity.this, expenses);
                 ListView listView = findViewById(R.id.listView);
                 listView.setAdapter(adapter);
             }
@@ -61,10 +61,9 @@ public class RemoveExpenseActivity extends AppCompatActivity {
         listViewSet.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                ExpenseAdapter adapter = new ExpenseAdapter(RemoveExpenseActivity.this, expenseList);
+
                 Expense expenseToRemove = expenseList.get(position);
                 expenseList.remove(position);
-                adapter.notifyDataSetChanged();
 
                 APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
                 apiExpense.deleteExpense(new DeleteExpenseCallback() {
