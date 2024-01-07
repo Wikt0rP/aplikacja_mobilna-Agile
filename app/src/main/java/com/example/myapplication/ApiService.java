@@ -31,6 +31,10 @@ public interface ApiService
     @GET("/expense/user/")
     Call <ResponseBody> getExpenses(@Header("Authorization") String AccessToken);
 
+    @FormUrlEncoded
+    @POST("/expense/create/")
+    Call <ResponseBody> addExpense(@Header("Authorization") String AccessToken, @Field("kwota") double amount, @Field("tytul") String title);
+
 
 
 }

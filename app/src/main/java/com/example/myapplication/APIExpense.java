@@ -26,6 +26,7 @@ public class APIExpense
     private String refreshToken;
     private String baseURL ="http://192.168.1.31:8000/";
     private double amount;
+    private String title;
 
     APIExpense(String accessToken, String refreshToken)
     {
@@ -76,6 +77,44 @@ public class APIExpense
             {
                 Log.d("API Expense", "Failed to get expenses");
                 expensesCallback.onExpenseError(t);
+            }
+        });
+    }
+
+    public void createExpense(CreateExpenseCallback createExpenseCallback)
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        apiService.addExpense("Bearer " + accessToken, amount, title).enqueue(new Callback<ResponseBody>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response)
+            {
+                if (response.body() != null)
+                {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        double balance = Double.parseDouble(jsonObject.getString("kwota"));
+                        createExpenseCallback.onSuccess(balance);
+                    }
+                    catch (JSONException | IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    Log.d("API Expense", "Response body is null" + response.code());
+                    createExpenseCallback.onError(new NullPointerException("Response body is null"));
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t)
+            {
+                Log.d("API Expense", "Failed to create expense");
+                createExpenseCallback.onError(t);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,5 +40,27 @@ public class ActivityExpenseAdd extends AppCompatActivity
 
         double expense = Double.parseDouble(expenseString);
         Log.d("addExpense", "Tytuł wydatku: " + title + ", Kwota wydatku: " + expense);
+        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
+        apiExpense.createExpense(new CreateExpenseCallback() {
+            @Override
+            public void onSuccess(double balance)
+            {
+                Log.d("addExpense", "Stan konta po dodaniu wydatku: " + balance);
+                Intent intent = new Intent(ActivityExpenseAdd.this, AfterLogin.class);
+                intent.putExtra("accessToken", getIntent().getStringExtra("accessToken"));
+                intent.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError(Throwable t)
+            {
+                Log.d("addExpense", "Błąd podczas dodawania wydatku: " + t.getMessage());
+                Intent intent = new Intent(ActivityExpenseAdd.this, AfterLogin.class);
+                intent.putExtra("accessToken", getIntent().getStringExtra("accessToken"));
+                intent.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
+                startActivity(intent);
+            }
+        });
     }
 }
