@@ -30,6 +30,8 @@ public class AfterLogin extends AppCompatActivity
 {
     //private ArrayList<String> arrayList;
     //private ArrayAdapter<String> adapter;
+    private Float budgetSum;
+    private Float expensesSum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +43,24 @@ public class AfterLogin extends AppCompatActivity
         String rToken = getIntent().getStringExtra("refreshToken");
 
         getBudget(aToken, rToken, textViewBudget);
-        GeneratePieChart();
         GenerateListView();
+        if(budgetSum != null && expensesSum != null)
+        {
+            float difference = budgetSum - expensesSum;
+            if(difference > 0)
+            {
+                GeneratePieChart(difference, expensesSum);
+            }
+            else
+            {
+                GeneratePieChart(0, expensesSum);
+            }
+        }
+
 
     }
 
-    public void GeneratePieChart()
+    public void GeneratePieChart(float budget, float expenses)
     {
         int holeColor = Color.parseColor("#3d3d3d");
         int chartColor1 = Color.parseColor("#4881DF");
@@ -58,8 +72,8 @@ public class AfterLogin extends AppCompatActivity
 
         //Data for chart
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(30f, "Budżet"));
-        entries.add(new PieEntry(40f, "Wydatki"));
+        entries.add(new PieEntry(budget, "Budżet"));
+        entries.add(new PieEntry(expenses, "Wydatki"));
 
 
         //Adding data
@@ -104,6 +118,8 @@ public class AfterLogin extends AppCompatActivity
                listView.setAdapter(adapter);
                TextView textViewSum = findViewById(R.id.TVSum);
                textViewSum.setText(String.valueOf(sum));
+               expensesSum = (float) sum;
+
            }
 
            @Override
@@ -119,13 +135,16 @@ public class AfterLogin extends AppCompatActivity
         APIBalance apiBalance = new APIBalance(aToken, rToken);
         apiBalance.getBalance(new TokenBalanceCallback() {
             @Override
-            public void onTokenBalanceReceived(double balance) {
+            public void onTokenBalanceReceived(double balance)
+            {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         textViewBudget.setText(String.valueOf(balance));
                     }
+
                 });
+                budgetSum = (float) balance;
             }
 
             @Override
