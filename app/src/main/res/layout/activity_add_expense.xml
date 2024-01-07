@@ -60,7 +60,9 @@
             android:text="Dodaj wydatek"
             android:textSize="20sp"
             android:backgroundTint="#4881DF"
-            android:onClick="buttonAddExpense"/>
+            android:onClick="buttonAddExpense"
+            android:scaleX="0.9"
+            android:scaleY="0.9"/>
 
     </LinearLayout>
 
