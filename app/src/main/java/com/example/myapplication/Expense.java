@@ -63,6 +63,9 @@ public class Expense
 //    public void setUserGroup(Integer userGroup) {
 //        this.userGroup = userGroup;
 //    }
+    public int getId() {
+        return id;
+    }
 
     @NonNull
     @Override

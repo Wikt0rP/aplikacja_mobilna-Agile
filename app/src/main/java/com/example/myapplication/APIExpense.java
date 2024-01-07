@@ -105,4 +105,31 @@ public class APIExpense
             }
         });
     }
+
+    public void deleteExpense(DeleteExpenseCallback deleteExpenseCallback, int id)
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ResponseBody> call = apiService.deleteExpense("Bearer " + accessToken, id);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    deleteExpenseCallback.onSuccess();
+                } else {
+                    deleteExpenseCallback.onError("Failed to delete expense: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                deleteExpenseCallback.onError(t.getMessage());
+            }
+        });
+    }
+
+
 }

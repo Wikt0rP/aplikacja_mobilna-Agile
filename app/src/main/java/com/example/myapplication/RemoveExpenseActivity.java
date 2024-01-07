@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
+import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoveExpenseActivity extends AppCompatActivity {
 
-    private String baseURL ="http://192.168.1.31:8000/";
+    private String baseURL = "http://192.168.1.31:8000/";
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_remove_expense);
@@ -42,8 +43,7 @@ public class RemoveExpenseActivity extends AppCompatActivity {
         APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
         apiExpense.getExpenses(new ExpensesCallback() {
             @Override
-            public void onExpenseRecieved(List<Expense> expenses)
-            {
+            public void onExpenseRecieved(List<Expense> expenses) {
                 expenseList.addAll(expenses);
                 ExpenseAdapter adapter = new ExpenseAdapter(RemoveExpenseActivity.this, expenses);
                 ListView listView = findViewById(R.id.listView);
@@ -52,13 +52,36 @@ public class RemoveExpenseActivity extends AppCompatActivity {
 
             @Override
             public void onExpenseError(Throwable t) {
-
+                Log.d("API Expense", "Error: " + t.getMessage());
             }
 
         });
+        ListView listViewSet = findViewById(R.id.listView);
 
-    }
-    public void getExpenses() {
+        listViewSet.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ExpenseAdapter adapter2 = new ExpenseAdapter(RemoveExpenseActivity.this, expenseList);
+                Expense expenseToRemove = expenseList.get(position);
+                expenseList.remove(position);
+                adapter2.notifyDataSetChanged();
+
+                APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
+                apiExpense.deleteExpense(new DeleteExpenseCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d("API Expense", "Successfully deleted expense");
+                    }
+
+                    @Override
+                    public void onError(String errorMessage) {
+                        Log.d("API Expense", "Failed to delete expense: " + errorMessage);
+                    }
+                }, expenseToRemove.getId());
+
+                return true;
+            }
+        });
 
     }
 }
