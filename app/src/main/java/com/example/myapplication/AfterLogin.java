@@ -45,15 +45,13 @@ public class AfterLogin extends AppCompatActivity
 
         getBudget(aToken, rToken, textViewBudget);
         GenerateListView();
-        GeneratePieChart(0, 0);
-
 
 
     }
 
     public void GeneratePieChart(float budget, float expenses)
     {
-        if (budget <= 0 && expenses == 0)
+        if (budget <= 0)
         {
             budget = 0f;
             expenses = 100f;
