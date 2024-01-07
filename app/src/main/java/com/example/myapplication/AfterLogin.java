@@ -87,6 +87,7 @@ public class AfterLogin extends AppCompatActivity
         pieChart.invalidate();
         legend.setEnabled(false);
         pieChart.setUsePercentValues(false);
+        Log.d("Wykres", "Budget: " + budget + " Expenses: " + expenses);
 
 
     }
@@ -116,6 +117,7 @@ public class AfterLogin extends AppCompatActivity
 
 
                GeneratePieChart(budgetSum, (float) sum);
+               Log.d("Wykres", "Budget: " + budgetSum + " Expenses: " + sum);
 
            }
 
