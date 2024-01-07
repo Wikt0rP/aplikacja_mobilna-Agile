@@ -12,23 +12,23 @@ public interface ApiService
 {
     // User
     @FormUrlEncoded
-    @POST("/jwt/create")
+    @POST("/jwt/create/")
     Call<ResponseBody> createToken(@Field("username") String username, @Field("password") String password);
 
 
 
     // Wallet
-    @GET("/wallet/user")
+    @GET("/wallet/user/")
     Call <ResponseBody> getBalance(@Header("Authorization") String AccessToken);
 
     @FormUrlEncoded
-    @POST("/wallet/add")
+    @POST("/wallet/add/")
     Call <ResponseBody> addMoney(@Header("Authorization") String AccessToken, @Field("kwota") double amount);
 
 
 
     // Expense
-    @GET("/expense/user")
+    @GET("/expense/user/")
     Call <ResponseBody> getExpenses(@Header("Authorization") String AccessToken);
 
 
