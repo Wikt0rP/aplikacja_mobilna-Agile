@@ -183,7 +183,17 @@
                     android:id="@+id/TVSum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="{Wydatki} PLN"
+                    android:text="{Wydatki}"
+                    android:textSize="18dp"
+                    android:textColor="#2FD7C4"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_weight="10"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLN"
                     android:textSize="18dp"
                     android:textColor="#4881DF"
                     android:textStyle="bold"
