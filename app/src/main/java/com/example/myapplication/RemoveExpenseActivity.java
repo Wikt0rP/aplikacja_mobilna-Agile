@@ -66,10 +66,12 @@ public class RemoveExpenseActivity extends AppCompatActivity {
                 expenseList.remove(position);
 
                 APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
+                Log.d("API Expense", "Rozpoczynam usuwanie wydatku o id: " + id);
                 apiExpense.deleteExpense(new DeleteExpenseCallback() {
                     @Override
                     public void onSuccess() {
                         Log.d("API Expense", "Successfully deleted expense");
+
                     }
 
                     @Override
@@ -77,6 +79,7 @@ public class RemoveExpenseActivity extends AppCompatActivity {
                         Log.d("API Expense", "Failed to delete expense: " + errorMessage);
                     }
                 }, expenseToRemove.getId());
+                Log.d("API Expense", "Zakończono usuwanie wydatku o id: " + id);
 
                 return true;
             }
