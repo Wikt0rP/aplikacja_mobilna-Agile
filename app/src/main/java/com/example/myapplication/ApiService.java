@@ -10,13 +10,26 @@ import retrofit2.http.POST;
 
 public interface ApiService
 {
+    // User
     @FormUrlEncoded
     @POST("/jwt/create")
     Call<ResponseBody> createToken(@Field("username") String username, @Field("password") String password);
 
+
+
+    // Wallet
     @GET("/wallet/user")
     Call <ResponseBody> getBalance(@Header("Authorization") String AccessToken);
 
+    @POST("/wallet/add")
+    Call <ResponseBody> addMoney(@Header("Authorization") String AccessToken, @Field("amount") double amount);
+
+
+
+    // Expense
     @GET("/expense/user")
     Call <ResponseBody> getExpenses(@Header("Authorization") String AccessToken);
+
+
+
 }

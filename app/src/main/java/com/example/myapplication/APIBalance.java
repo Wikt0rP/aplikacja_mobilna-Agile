@@ -2,6 +2,8 @@ package com.example.myapplication;
 import android.app.AlertDialog;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class APIBalance
         call.enqueue(new Callback<ResponseBody>()
         {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response)
             {
                 if (response.body() != null)
                 {
@@ -60,10 +62,40 @@ public class APIBalance
                 }
             }
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t)
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t)
             {
                 Log.d("API Balance", "Failed to get balance");
                 balanceCallback.onBalanceError(t);
+            }
+        });
+
+    }
+
+    public void addMoney(double amount, BalanceAddCallback balanceCallback)
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ResponseBody> call = apiService.addMoney("Bearer " + accessToken, amount);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.isSuccessful())
+                {
+                    balanceCallback.onSuccess(response.body());
+                } else {
+                    balanceCallback.onError("Błąd serwera: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t)
+            {
+                balanceCallback.onError("Błąd sieciowy: " + t.getMessage());
             }
         });
 
