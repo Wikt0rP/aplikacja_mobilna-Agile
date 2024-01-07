@@ -109,6 +109,7 @@ public class AfterLogin extends AppCompatActivity
                }
 
                ExpenseAdapter adapter = new ExpenseAdapter(AfterLogin.this, expenses);
+               Collections.reverse(expenses);
                ListView listView = findViewById(R.id.ListViewBudget);
                listView.setAdapter(adapter);
                TextView textViewSum = findViewById(R.id.TVSum);
