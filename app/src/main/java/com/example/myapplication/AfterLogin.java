@@ -86,7 +86,7 @@ public class AfterLogin extends AppCompatActivity
        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
        apiExpense.getExpenses(new ExpensesCallback()
        {
-           double sum = 0;
+           double sum = 0.0;
            @Override
            public void onExpenseRecieved(List<Expense> expenses)
            {
@@ -95,6 +95,7 @@ public class AfterLogin extends AppCompatActivity
                {
                    expenseList.add(expense.getTitle() + ": " + expense.getAmount() + "zł");
                    sum += expense.getAmount();
+                   Log.d("Expense", "razem: " + expense.getAmount());
                }
                expenseList.add("Razem: " + sum + "zł");
                Collections.reverse(expenseList);
