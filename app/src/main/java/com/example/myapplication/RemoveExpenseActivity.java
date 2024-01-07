@@ -94,7 +94,15 @@ public class RemoveExpenseActivity extends AppCompatActivity {
                                 }, expenseToRemove.getId());
                                 Log.d("API Expense", "Zakończono usuwanie wydatku o id: " + id);
                             }
-                        }).setNegativeButton(android.R.string.no, null)
+                        }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(RemoveExpenseActivity.this, AfterLogin.class);
+                                intent.putExtra("accessToken", getIntent().getStringExtra("accessToken"));
+                                intent.putExtra("refreshToken", getIntent().getStringExtra("refreshToken"));
+                                startActivity(intent);
+                            }
+                        })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
 
