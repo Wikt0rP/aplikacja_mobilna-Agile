@@ -98,12 +98,12 @@ public class AfterLogin extends AppCompatActivity
                    sum += expense.getAmount();
                    Log.d("Expense", "razem: " + expense.getAmount());
                }
-               Expense sumEx = new Expense(this.sum, "Razem");
-               expenses.add(sumEx);
-               Collections.reverse(expenseList);
+
                ExpenseAdapter adapter = new ExpenseAdapter(AfterLogin.this, expenses);
                ListView listView = findViewById(R.id.ListViewBudget);
                listView.setAdapter(adapter);
+               TextView textViewSum = findViewById(R.id.TVSum);
+               textViewSum.setText(String.valueOf(sum));
            }
 
            @Override
