@@ -27,8 +27,8 @@ import java.util.List;
 
 public class AfterLogin extends AppCompatActivity
 {
-    private ArrayList<String> arrayList;
-    private ArrayAdapter<String> adapter;
+    //private ArrayList<String> arrayList;
+    //private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class AfterLogin extends AppCompatActivity
            @Override
            public void onExpenseRecieved(List<Expense> expenses)
            {
-                List<String> expenseList = new ArrayList<>();
+               List<String> expenseList = new ArrayList<>();
                for (Expense expense : expenses)
                {
                    expenseList.add(expense.getTitle() + ": " + expense.getAmount() + "zł");
