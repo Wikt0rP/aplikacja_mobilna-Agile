@@ -30,7 +30,7 @@ public class AfterLogin extends AppCompatActivity
 {
     //private ArrayList<String> arrayList;
     //private ArrayAdapter<String> adapter;
-    private Float budgetSum;
+    private Float budgetSum = 0f;
 
 
     @Override
