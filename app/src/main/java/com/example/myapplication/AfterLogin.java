@@ -23,6 +23,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AfterLogin extends AppCompatActivity
@@ -85,6 +86,7 @@ public class AfterLogin extends AppCompatActivity
        APIExpense apiExpense = new APIExpense(getIntent().getStringExtra("accessToken"), getIntent().getStringExtra("refreshToken"));
        apiExpense.getExpenses(new ExpensesCallback()
        {
+           double sum = 0;
            @Override
            public void onExpenseRecieved(List<Expense> expenses)
            {
@@ -92,7 +94,10 @@ public class AfterLogin extends AppCompatActivity
                for (Expense expense : expenses)
                {
                    expenseList.add(expense.getTitle() + ": " + expense.getAmount() + "zł");
+                   sum += expense.getAmount();
                }
+               expenseList.add("Razem: " + sum + "zł");
+               Collections.reverse(expenseList);
                ExpenseAdapter adapter = new ExpenseAdapter(AfterLogin.this, expenses);
                ListView listView = findViewById(R.id.ListViewBudget);
                listView.setAdapter(adapter);
