@@ -136,12 +136,12 @@ public class AfterLogin extends AppCompatActivity
         {
             switch (which) {
                 case 0:
-                    Intent intent = new Intent(this, addMoney.class);
+                    Intent intent = new Intent(AfterLogin.this, addMoney.class);
                     startActivity(intent);
                     Log.d("AfterLogin", "Dodaj/usuń pieniądze");
                     break;
                 case 1:
-                    Intent intent2 = new Intent(this, addExpense.class);
+                    Intent intent2 = new Intent(AfterLogin.this, addExpense.class);
                     startActivity(intent2);
                     Log.d("AfterLogin", "Wydatek");
                     break;
