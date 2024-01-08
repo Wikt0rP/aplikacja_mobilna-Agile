@@ -16,22 +16,37 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
+        <!--Logo -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Witaj !"
-                android:textColor="#d9d7d7"
-                android:textSize="25sp"
+                android:text="Cash"
+                android:textColor="#2FD7C4"
+                android:textSize="40sp"
                 android:id="@+id/WelcomeText"
                 android:gravity="center_horizontal"
-                android:layout_margin="5dp" />
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flow"
+                android:textColor="#4881DF"
+                android:textSize="40sp"
+                android:id="@+id/WelcomeText2"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"/>
         </LinearLayout>
-
+        <!--PieChart-->
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -46,6 +61,41 @@
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 />
+
+
+        </LinearLayout>
+        <!--Budget-->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="{kwota}"
+                android:textSize="20dp"
+                android:textColor="#2FD7C4"
+                android:textStyle="bold"
+                android:id="@+id/TextViewBudget"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" PLN"
+                android:textSize="20dp"
+                android:textColor="#4881DF"
+                android:textStyle="bold"
+                >
+
+            </TextView>
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,10 +113,12 @@
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="Dodaj"
-                    android:backgroundTint="#D40D12"
                     android:textColor="#d9d7d7"
+                    android:backgroundTint="#458ADC"
+                    android:textStyle="bold"
                     android:scaleX="0.9"
-                    android:scaleY="0.9"/>
+                    android:scaleY="0.9"
+                    android:onClick="buttonDodaj"/>
 
 
             </LinearLayout>
@@ -82,8 +134,9 @@
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="Menu"
-                    android:backgroundTint="#D40D12"
                     android:textColor="#d9d7d7"
+                    android:backgroundTint="#458ADC"
+                    android:textStyle="bold"
                     android:scaleX="0.9"
                     android:scaleY="0.9"/>
 
@@ -99,13 +152,106 @@
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="Więcej"
-                    android:backgroundTint="#D40D12"
                     android:textColor="#d9d7d7"
+                    android:backgroundTint="#458ADC"
+                    android:textStyle="bold"
                     android:scaleX="0.9"
                     android:scaleY="0.9"/>
 
 
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wydatki:"
+                    android:textSize="22dp"
+                    android:textColor="#4881DF"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"/>
+                <TextView
+                    android:id="@+id/TVSum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="{Wydatki}"
+                    android:textSize="18dp"
+                    android:textColor="#2FD7C4"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_weight="10"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLN"
+                    android:textSize="18dp"
+                    android:textColor="#4881DF"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wolne pieniądze:"
+                    android:textSize="22dp"
+                    android:textColor="#4881DF"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"/>
+                <TextView
+                    android:id="@+id/MoneyLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="{Pozostale}"
+                    android:textSize="18dp"
+                    android:textColor="#2FD7C4"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_weight="10"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLN"
+                    android:textSize="18dp"
+                    android:textColor="#4881DF"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/ListViewBudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                >
+
+            </ListView>
+
+
+
+
         </LinearLayout>
     </LinearLayout>
 

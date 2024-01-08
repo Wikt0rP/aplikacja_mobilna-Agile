@@ -7,91 +7,132 @@
     android:background="#3d3d3d"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Witaj !"
-        android:textColor="#d9d7d7"
-        android:textSize="30dp"
-        android:id="@+id/WelcomeText"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-
-        />
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:gravity="center_horizontal"
+
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Witaj w "
+            android:textColor="#d9d7d7"
+            android:textSize="30dp"
+            android:id="@+id/WelcomeText"
+            android:layout_marginTop="50dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash"
+            android:textColor="#2FD7C4"
+            android:textSize="30dp"
+            android:id="@+id/WelcomeText2"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flow!"
+            android:textColor="#4881DF"
+            android:textSize="30dp"
+            android:id="@+id/WelcomeText3"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="-35dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:padding="5dp"
                 android:text="Zaloguj się"
-                android:layout_gravity="center"
                 android:textColor="#d9d7d7"
-                android:textStyle="bold"
                 android:textSize="20dp"
-                />
+                android:textStyle="bold" />
 
             <EditText
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:inputType="text"
-                android:textColor="#d9d7d7"
-                android:backgroundTint="#757474"
-                android:onClick="loginType"
-                android:hint="login"
-                android:textColorHint = "#808080"
-                android:gravity="center"
                 android:id="@+id/loginText"
-                />
-            <EditText
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#d9d7d7"
                 android:backgroundTint="#757474"
-                android:hint="password"
-                android:textColorHint = "#808080"
-                android:onClick="passwordType"
+                android:gravity="center"
+                android:hint="login"
+                android:inputType="text"
+                android:onClick="loginType"
+                android:textColor="#d9d7d7"
+                android:textColorHint="#808080" />
+
+            <EditText
                 android:id="@+id/passwordText"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#757474"
+                android:gravity="center"
+                android:hint="hasło"
                 android:inputType="textPassword"
-                android:gravity="center" />
+                android:onClick="passwordType"
+                android:textColor="#d9d7d7"
+                android:textColorHint="#808080" />
+
             <Button
                 android:id="@+id/buttonLogin"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#D40D12"
-                android:textColor="#d9d7d7"
-                android:text="Zaloguj"
-                android:onClick="buttonLoginClick" />
-            <Button
-                android:id="@+id/buttonRegister"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-
-                android:backgroundTint="#D40D12"
-                android:textColor="#d9d7d7"
-                android:text="Załóż konto"
                 android:onClick="buttonLoginClick"
-                />
+                android:padding="12dp"
+                android:text="Zaloguj"
+                android:textColor="#d9d7d7"
+                android:backgroundTint="#458ADC"
+                android:textStyle="bold" />
+
 
         </LinearLayout>
 
